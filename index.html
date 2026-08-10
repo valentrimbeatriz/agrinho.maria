@@ -1,171 +1,333 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { EmissionCalculator } from "@/components/EmissionCalculator";
-import { SustainabilityQuiz } from "@/components/SustainabilityQuiz";
-import ecoCity from "@/assets/eco-city.jpg";
-import holoLeaf from "@/assets/holo-leaf.jpg";
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "EcoFuturo | Calculadora de CO₂ e Quiz de Sustentabilidade" },
-      {
-        name: "description",
-        content:
-          "Calcule sua pegada de carbono, teste seus conhecimentos no quiz e entenda os pilares da sustentabilidade em um site interativo e futurista.",
-      },
-      { property: "og:title", content: "EcoFuturo | Calculadora de CO₂ e Quiz" },
-      {
-        property: "og:description",
-        content: "Site interativo sobre sustentabilidade com calculadora de emissões e quiz.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
+    <title>EcoFuturo | Calculadora de CO₂ e Quiz de Sustentabilidade</title>
 
-const TOPICOS = [
-  {
-    titulo: "Energia Renovável",
-    texto:
-      "Sol, vento, água e biomassa geram eletricidade sem queimar combustíveis fósseis. Uma matriz limpa reduz drasticamente as emissões de CO₂ e a poluição do ar nas cidades.",
-  },
-  {
-    titulo: "Economia Circular",
-    texto:
-      "Em vez de extrair, usar e descartar, os materiais voltam ao ciclo produtivo por meio de reparo, reuso e reciclagem — menos lixo e menos extração de recursos naturais.",
-  },
-  {
-    titulo: "Pegada Hídrica",
-    texto:
-      "Toda produção consome água: 1 kg de carne bovina pode exigir mais de 15 mil litros. Escolhas alimentares conscientes economizam mais água do que fechar a torneira.",
-  },
-  {
-    titulo: "Biodiversidade",
-    texto:
-      "Florestas, oceanos e solos vivos regulam o clima e o ciclo da água. Proteger ecossistemas é infraestrutura climática — e a forma mais barata de capturar carbono.",
-  },
-  {
-    titulo: "Mobilidade Limpa",
-    texto:
-      "Transporte público, bicicleta e veículos elétricos cortam emissões urbanas. Trocar trajetos curtos de carro já reduz centenas de quilos de CO₂ por ano.",
-  },
-  {
-    titulo: "Consumo Consciente",
-    texto:
-      "Comprar menos e melhor, priorizar produtos locais e duráveis e evitar desperdício de alimentos são atitudes de alto impacto e custo zero.",
-  },
-];
+    <meta
+        name="description"
+        content="Calcule sua pegada de carbono, teste seus conhecimentos no quiz e entenda os pilares da sustentabilidade em um site interativo e futurista."
+    >
 
-function Index() {
-  return (
-    <main className="min-h-screen grid-lines">
-      <section className="relative overflow-hidden">
-        <img
-          src={ecoCity}
-          alt="Cidade futurista sustentável iluminada por energia limpa"
-          width={1280}
-          height={800}
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
-        <div className="relative mx-auto max-w-5xl px-6 py-24 text-center sm:py-32">
-          <span className="inline-block rounded-full border border-primary/40 px-4 py-1 text-[0.65rem] uppercase tracking-[0.4em] text-primary">
-            Futuro Sustentável
-          </span>
-          <h1 className="mt-6 font-display text-4xl font-black leading-tight sm:text-6xl">
-            <span className="neon-text">ECO</span>FUTURO
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Entenda, calcule e teste seu impacto no planeta. Um painel interativo sobre
-            sustentabilidade, emissões de carbono e as escolhas que mudam o clima.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="#calculadora" className="neon-btn px-6 py-3 text-sm">
-              Calcular emissões
-            </a>
-            <a
-              href="#quiz"
-              className="rounded-lg border border-primary/50 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-primary transition-colors hover:bg-primary/10"
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="grid-lines">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <img
+                src="eco-city.jpg"
+                alt="Cidade futurista sustentável iluminada por energia limpa"
+                class="hero-image"
             >
-              Fazer o quiz
-            </a>
-          </div>
 
-          <div className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-            {[
-              { n: "1,5 °C", l: "Limite do Acordo de Paris" },
-              { n: "70%", l: "Da água doce vai à agricultura" },
-              { n: "400 anos", l: "Para o plástico se decompor" },
-            ].map((s) => (
-              <div key={s.l} className="panel px-4 py-5">
-                <p className="font-display text-2xl font-bold neon-text">{s.n}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            <div class="hero-overlay"></div>
 
-      <section id="conceitos" className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">
-          O que é <span className="neon-text">sustentabilidade</span>?
-        </h2>
-        <p className="mx-auto mt-4 max-w-3xl text-center text-muted-foreground">
-          É usar os recursos do presente sem comprometer a capacidade das futuras gerações de
-          atenderem às próprias necessidades — equilibrando meio ambiente, sociedade e economia.
-        </p>
+            <div class="hero-content">
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <img
-            src={holoLeaf}
-            alt="Folha holográfica com circuitos representando tecnologia verde"
-            width={1024}
-            height={768}
-            loading="lazy"
-            className="float-slow w-full rounded-2xl border border-border object-cover shadow-[var(--glow-soft)]"
-          />
-          <div className="grid gap-4 sm:grid-cols-2">
-            {TOPICOS.map((t) => (
-              <details key={t.titulo} className="panel group p-5">
-                <summary className="cursor-pointer list-none font-display text-sm font-bold uppercase tracking-wider text-primary">
-                  {t.titulo}
-                  <span className="float-right text-muted-foreground transition-transform group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.texto}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+                <span class="badge">
+                    Futuro Sustentável
+                </span>
 
-      <section id="calculadora" className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">
-          Calculadora de <span className="neon-text">Emissões</span>
-        </h2>
-        <p className="mx-auto mb-10 mt-4 max-w-2xl text-center text-muted-foreground">
-          Ajuste os controles com seus hábitos e veja em tempo real a estimativa da sua pegada de
-          carbono mensal.
-        </p>
-        <EmissionCalculator />
-      </section>
+                <h1>
+                    <span class="neon-text">ECO</span>FUTURO
+                </h1>
 
-      <section id="quiz" className="mx-auto max-w-3xl px-6 py-16">
-        <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">
-          Quiz <span className="neon-text">Sustentável</span>
-        </h2>
-        <p className="mb-10 mt-4 text-center text-muted-foreground">
-          Cinco perguntas para testar o que você sabe sobre o planeta.
-        </p>
-        <SustainabilityQuiz />
-      </section>
+                <p>
+                    Entenda, calcule e teste seu impacto no planeta.
+                    Um painel interativo sobre sustentabilidade, emissões
+                    de carbono e as escolhas que mudam o clima.
+                </p>
 
-      <footer className="border-t border-border px-6 py-10 text-center text-xs text-muted-foreground">
-        EcoFuturo — dados aproximados com fins educativos. Pequenas mudanças, grande impacto.
-      </footer>
+                <div class="buttons">
+
+                    <a href="#calculadora" class="neon-btn">
+                        Calcular emissões
+                    </a>
+
+                    <a href="#quiz" class="secondary-btn">
+                        Fazer o quiz
+                    </a>
+
+                </div>
+
+                <!-- ESTATÍSTICAS -->
+                <div class="stats">
+
+                    <div class="panel">
+                        <p class="stat-number">1,5 °C</p>
+                        <p class="stat-text">
+                            Limite do Acordo de Paris
+                        </p>
+                    </div>
+
+                    <div class="panel">
+                        <p class="stat-number">70%</p>
+                        <p class="stat-text">
+                            Da água doce vai à agricultura
+                        </p>
+                    </div>
+
+                    <div class="panel">
+                        <p class="stat-number">400 anos</p>
+                        <p class="stat-text">
+                            Para o plástico se decompor
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONCEITOS -->
+        <section id="conceitos" class="section concepts">
+
+            <h2>
+                O que é
+                <span class="neon-text">sustentabilidade</span>?
+            </h2>
+
+            <p class="section-description">
+                É usar os recursos do presente sem comprometer a capacidade
+                das futuras gerações de atenderem às próprias necessidades —
+                equilibrando meio ambiente, sociedade e economia.
+            </p>
+
+            <div class="concept-content">
+
+                <img
+                    src="holo-leaf.jpg"
+                    alt="Folha holográfica com circuitos representando tecnologia verde"
+                    class="leaf-image"
+                >
+
+                <div class="topics">
+
+                    <details class="panel topic">
+                        <summary>
+                            Energia Renovável
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Sol, vento, água e biomassa geram eletricidade
+                            sem queimar combustíveis fósseis. Uma matriz limpa
+                            reduz drasticamente as emissões de CO₂ e a poluição
+                            do ar nas cidades.
+                        </p>
+                    </details>
+
+
+                    <details class="panel topic">
+                        <summary>
+                            Economia Circular
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Em vez de extrair, usar e descartar, os materiais
+                            voltam ao ciclo produtivo por meio de reparo,
+                            reuso e reciclagem — menos lixo e menos extração
+                            de recursos naturais.
+                        </p>
+                    </details>
+
+
+                    <details class="panel topic">
+                        <summary>
+                            Pegada Hídrica
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Toda produção consome água. Escolhas alimentares
+                            conscientes podem contribuir para a economia
+                            desse recurso essencial.
+                        </p>
+                    </details>
+
+
+                    <details class="panel topic">
+                        <summary>
+                            Biodiversidade
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Florestas, oceanos e solos vivos regulam o clima
+                            e o ciclo da água. Proteger ecossistemas é
+                            fundamental para a estabilidade ambiental.
+                        </p>
+                    </details>
+
+
+                    <details class="panel topic">
+                        <summary>
+                            Mobilidade Limpa
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Transporte público, bicicleta e veículos elétricos
+                            ajudam a reduzir emissões urbanas e melhorar a
+                            qualidade do ar.
+                        </p>
+                    </details>
+
+
+                    <details class="panel topic">
+                        <summary>
+                            Consumo Consciente
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Comprar menos e melhor, priorizar produtos locais
+                            e duráveis e evitar desperdício de alimentos são
+                            atitudes de alto impacto.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CALCULADORA -->
+        <section id="calculadora" class="section calculator-section">
+
+            <h2>
+                Calculadora de
+                <span class="neon-text">Emissões</span>
+            </h2>
+
+            <p class="section-description">
+                Ajuste os controles com seus hábitos e veja uma estimativa
+                da sua pegada de carbono mensal.
+            </p>
+
+            <div class="panel calculator">
+
+                <h3>Calculadora de CO₂</h3>
+
+                <label for="carro">
+                    Quilômetros de carro por mês
+                </label>
+
+                <input
+                    type="number"
+                    id="carro"
+                    placeholder="Ex: 500"
+                    min="0"
+                >
+
+
+                <label for="energia">
+                    Consumo de energia elétrica mensal (kWh)
+                </label>
+
+                <input
+                    type="number"
+                    id="energia"
+                    placeholder="Ex: 150"
+                    min="0"
+                >
+
+
+                <label for="voos">
+                    Número de voos por ano
+                </label>
+
+                <input
+                    type="number"
+                    id="voos"
+                    placeholder="Ex: 2"
+                    min="0"
+                >
+
+                <button class="neon-btn calculator-button">
+                    Calcular minha emissão
+                </button>
+
+                <div class="result">
+                    <p>Sua estimativa mensal:</p>
+                    <strong>-- kg de CO₂</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+        <section id="quiz" class="section quiz-section">
+
+            <h2>
+                Quiz
+                <span class="neon-text">Sustentável</span>
+            </h2>
+
+            <p class="section-description">
+                Cinco perguntas para testar o que você sabe sobre o planeta.
+            </p>
+
+            <div class="panel quiz">
+
+                <h3>Pergunta 1</h3>
+
+                <p>
+                    Qual dessas fontes de energia é considerada renovável?
+                </p>
+
+                <label>
+                    <input type="radio" name="pergunta1">
+                    Carvão mineral
+                </label>
+
+                <label>
+                    <input type="radio" name="pergunta1">
+                    Petróleo
+                </label>
+
+                <label>
+                    <input type="radio" name="pergunta1">
+                    Energia solar
+                </label>
+
+                <label>
+                    <input type="radio" name="pergunta1">
+                    Gás natural
+                </label>
+
+                <button class="neon-btn quiz-button">
+                    Responder
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RODAPÉ -->
+        <footer>
+
+            EcoFuturo — dados aproximados com fins educativos.
+            Pequenas mudanças, grande impacto.
+
+        </footer>
+
     </main>
-  );
-}
+
+</body>
+</html>
