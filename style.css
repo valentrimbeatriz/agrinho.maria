@@ -1,46 +1,158 @@
-*{
-    font-family: Arial, sans-serif;
+/* Configurações Globais */
+* {
+    box-sizing: border-box; /* Garante que padding não quebre a largura dos elementos */
     margin: 0;
     padding: 0;
-    background: #f4f9f4;
-    color: #333;
+    font-family: Arial, sans-serif;
 }
 
+body {
+    background-color: #f4f9f4; /* Cor de fundo aplicada apenas ao corpo da página */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
 header {
     background: #4CAF50;
     color: white;
     text-align: center;
+    padding: 40px 20px;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Área Principal (Layout Responsivo) */
+main {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
 }
 
+/* Seções */
 section {
-    margin: 20px;
-    padding: 20px;
+    margin: 20px 0;
+    padding: 25px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra mais suave e moderna */
 }
 
 h2 {
     color: #4CAF50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e8f5e9;
+    padding-bottom: 8px;
 }
 
+/* Quiz e Formulários */
+.quiz-question-group {
+    margin-bottom: 20px;
+}
+
+.quiz-question {
+    margin-bottom: 8px;
+}
+
+.quiz-option {
+    display: inline-block;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Botões */
 button {
     background: #4CAF50;
     color: white;
     border: none;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
+    transition: background 0.2s ease, transform 0.1s ease; /* Transição suave */
+    width: 100%; /* Botão ocupa toda a largura em telas menores */
 }
 
 button:hover {
     background: #45a049;
 }
 
+button:active {
+    transform: scale(0.98); /* Efeito de clique físico */
+}
+
+/* Mensagens de Feedback */
+#quiz-result, #resultado {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Galeria de Imagens */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+figure {
+    background: #fff;
+    margin: 0;
+    text-align: center;
+}
+
 img {
-    width: 300px;
-    margin: 10px;
+    max-width: 100%;
+    width: 320px;
+    height: 200px;
+    object-fit: cover; /* Recorta a imagem sem distorcê-la */
     border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+figcaption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 40px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Ajustes para telas maiores (computador) */
+@media (min-width: 600px) {
+    button {
+        width: auto; /* Botão volta ao tamanho normal no PC */
+    }
 }
