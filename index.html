@@ -1,61 +1,171 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agricultura Sustentável</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Agricultura Sustentável</h1>
-        <p>Aprenda mais sobre agricultura e consumo de água</p>
-    </header>
+import { createFileRoute } from "@tanstack/react-router";
+import { EmissionCalculator } from "@/components/EmissionCalculator";
+import { SustainabilityQuiz } from "@/components/SustainabilityQuiz";
+import ecoCity from "@/assets/eco-city.jpg";
+import holoLeaf from "@/assets/holo-leaf.jpg";
 
-    <main>
-        <section id="quiz" aria-labelledby="quiz-heading">
-            <h2 id="quiz-heading">Quiz sobre Agricultura</h2>
-            <div id="quiz-container"></div>
-            <button type="button" id="btn-submit-quiz">Enviar Respostas</button>
-            <p id="quiz-result" aria-live="polite"></p>
-        </section>
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "EcoFuturo | Calculadora de CO₂ e Quiz de Sustentabilidade" },
+      {
+        name: "description",
+        content:
+          "Calcule sua pegada de carbono, teste seus conhecimentos no quiz e entenda os pilares da sustentabilidade em um site interativo e futurista.",
+      },
+      { property: "og:title", content: "EcoFuturo | Calculadora de CO₂ e Quiz" },
+      {
+        property: "og:description",
+        content: "Site interativo sobre sustentabilidade com calculadora de emissões e quiz.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Index,
+});
 
-        <section id="calculator" aria-labelledby="calc-heading">
-            <h2 id="calc-heading">Calculadora de Água Consumida</h2>
-            
-            <div class="input-group">
-                <label for="plantas">Número de plantas:</label>
-                <input type="number" id="plantas" min="0" placeholder="Ex: 50">
-            </div>
-            
-            <div class="input-group">
-                <label for="agua">Litros de água por planta:</label>
-                <input type="number" id="agua" min="0" step="0.1" placeholder="Ex: 2">
-            </div>
-            
-            <button type="button" id="btn-calcular">Calcular</button>
-            <p id="resultado" aria-live="polite"></p>
-        </section>
+const TOPICOS = [
+  {
+    titulo: "Energia Renovável",
+    texto:
+      "Sol, vento, água e biomassa geram eletricidade sem queimar combustíveis fósseis. Uma matriz limpa reduz drasticamente as emissões de CO₂ e a poluição do ar nas cidades.",
+  },
+  {
+    titulo: "Economia Circular",
+    texto:
+      "Em vez de extrair, usar e descartar, os materiais voltam ao ciclo produtivo por meio de reparo, reuso e reciclagem — menos lixo e menos extração de recursos naturais.",
+  },
+  {
+    titulo: "Pegada Hídrica",
+    texto:
+      "Toda produção consome água: 1 kg de carne bovina pode exigir mais de 15 mil litros. Escolhas alimentares conscientes economizam mais água do que fechar a torneira.",
+  },
+  {
+    titulo: "Biodiversidade",
+    texto:
+      "Florestas, oceanos e solos vivos regulam o clima e o ciclo da água. Proteger ecossistemas é infraestrutura climática — e a forma mais barata de capturar carbono.",
+  },
+  {
+    titulo: "Mobilidade Limpa",
+    texto:
+      "Transporte público, bicicleta e veículos elétricos cortam emissões urbanas. Trocar trajetos curtos de carro já reduz centenas de quilos de CO₂ por ano.",
+  },
+  {
+    titulo: "Consumo Consciente",
+    texto:
+      "Comprar menos e melhor, priorizar produtos locais e duráveis e evitar desperdício de alimentos são atitudes de alto impacto e custo zero.",
+  },
+];
 
-        <section id="images" aria-labelledby="images-heading">
-            <h2 id="images-heading">Imagens de Agricultura</h2>
-            <div class="gallery">
-                <figure>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Wheat_field.jpg" alt="Campo de trigo dourado sob o sol">
-                    <figcaption>Campo de trigo</figcaption>
-                </figure>
-                <figure>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Rice_fields.jpg" alt="Plantação de arroz em terraços verdes">
-                    <figcaption>Plantação de arroz</figcaption>
-                </figure>
-            </div>
-        </section>
+function Index() {
+  return (
+    <main className="min-h-screen grid-lines">
+      <section className="relative overflow-hidden">
+        <img
+          src={ecoCity}
+          alt="Cidade futurista sustentável iluminada por energia limpa"
+          width={1280}
+          height={800}
+          className="absolute inset-0 h-full w-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
+        <div className="relative mx-auto max-w-5xl px-6 py-24 text-center sm:py-32">
+          <span className="inline-block rounded-full border border-primary/40 px-4 py-1 text-[0.65rem] uppercase tracking-[0.4em] text-primary">
+            Futuro Sustentável
+          </span>
+          <h1 className="mt-6 font-display text-4xl font-black leading-tight sm:text-6xl">
+            <span className="neon-text">ECO</span>FUTURO
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            Entenda, calcule e teste seu impacto no planeta. Um painel interativo sobre
+            sustentabilidade, emissões de carbono e as escolhas que mudam o clima.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#calculadora" className="neon-btn px-6 py-3 text-sm">
+              Calcular emissões
+            </a>
+            <a
+              href="#quiz"
+              className="rounded-lg border border-primary/50 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-primary transition-colors hover:bg-primary/10"
+            >
+              Fazer o quiz
+            </a>
+          </div>
+
+          <div className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+            {[
+              { n: "1,5 °C", l: "Limite do Acordo de Paris" },
+              { n: "70%", l: "Da água doce vai à agricultura" },
+              { n: "400 anos", l: "Para o plástico se decompor" },
+            ].map((s) => (
+              <div key={s.l} className="panel px-4 py-5">
+                <p className="font-display text-2xl font-bold neon-text">{s.n}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{s.l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="conceitos" className="mx-auto max-w-6xl px-6 py-20">
+        <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">
+          O que é <span className="neon-text">sustentabilidade</span>?
+        </h2>
+        <p className="mx-auto mt-4 max-w-3xl text-center text-muted-foreground">
+          É usar os recursos do presente sem comprometer a capacidade das futuras gerações de
+          atenderem às próprias necessidades — equilibrando meio ambiente, sociedade e economia.
+        </p>
+
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+          <img
+            src={holoLeaf}
+            alt="Folha holográfica com circuitos representando tecnologia verde"
+            width={1024}
+            height={768}
+            loading="lazy"
+            className="float-slow w-full rounded-2xl border border-border object-cover shadow-[var(--glow-soft)]"
+          />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {TOPICOS.map((t) => (
+              <details key={t.titulo} className="panel group p-5">
+                <summary className="cursor-pointer list-none font-display text-sm font-bold uppercase tracking-wider text-primary">
+                  {t.titulo}
+                  <span className="float-right text-muted-foreground transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.texto}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="calculadora" className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">
+          Calculadora de <span className="neon-text">Emissões</span>
+        </h2>
+        <p className="mx-auto mb-10 mt-4 max-w-2xl text-center text-muted-foreground">
+          Ajuste os controles com seus hábitos e veja em tempo real a estimativa da sua pegada de
+          carbono mensal.
+        </p>
+        <EmissionCalculator />
+      </section>
+
+      <section id="quiz" className="mx-auto max-w-3xl px-6 py-16">
+        <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">
+          Quiz <span className="neon-text">Sustentável</span>
+        </h2>
+        <p className="mb-10 mt-4 text-center text-muted-foreground">
+          Cinco perguntas para testar o que você sabe sobre o planeta.
+        </p>
+        <SustainabilityQuiz />
+      </section>
+
+      <footer className="border-t border-border px-6 py-10 text-center text-xs text-muted-foreground">
+        EcoFuturo — dados aproximados com fins educativos. Pequenas mudanças, grande impacto.
+      </footer>
     </main>
-
-    <footer>
-        <p>&copy; 2026 Agricultura Sustentável. Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+  );
+}
