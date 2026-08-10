@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agricultura Sustentável</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,30 +12,49 @@
         <p>Aprenda mais sobre agricultura e consumo de água</p>
     </header>
 
-    <section id="quiz">
-        <h2>Quiz sobre Agricultura</h2>
-        <div id="quiz-container"></div>
-        <button onclick="submitQuiz()">Enviar Respostas</button>
-        <p id="quiz-result"></p>
-    </section>
+    <main>
+        <section id="quiz" aria-labelledby="quiz-heading">
+            <h2 id="quiz-heading">Quiz sobre Agricultura</h2>
+            <div id="quiz-container"></div>
+            <button type="button" id="btn-submit-quiz">Enviar Respostas</button>
+            <p id="quiz-result" aria-live="polite"></p>
+        </section>
 
-    <section id="calculator">
-        <h2>Calculadora de Água Consumida</h2>
-        <label for="plantas">Número de plantas:</label>
-        <input type="number" id="plantas" placeholder="Ex: 50">
-        
-        <label for="agua">Litros de água por planta:</label>
-        <input type="number" id="agua" placeholder="Ex: 2">
-        
-        <button onclick="calcularAgua()">Calcular</button>
-        <p id="resultado"></p>
-    </section>
+        <section id="calculator" aria-labelledby="calc-heading">
+            <h2 id="calc-heading">Calculadora de Água Consumida</h2>
+            
+            <div class="input-group">
+                <label for="plantas">Número de plantas:</label>
+                <input type="number" id="plantas" min="0" placeholder="Ex: 50">
+            </div>
+            
+            <div class="input-group">
+                <label for="agua">Litros de água por planta:</label>
+                <input type="number" id="agua" min="0" step="0.1" placeholder="Ex: 2">
+            </div>
+            
+            <button type="button" id="btn-calcular">Calcular</button>
+            <p id="resultado" aria-live="polite"></p>
+        </section>
 
-    <section id="images">
-        <h2>Imagens de Agricultura</h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Wheat_field.jpg" alt="Campo de trigo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Rice_fields.jpg" alt="Plantação de arroz">
-    </section>
+        <section id="images" aria-labelledby="images-heading">
+            <h2 id="images-heading">Imagens de Agricultura</h2>
+            <div class="gallery">
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Wheat_field.jpg" alt="Campo de trigo dourado sob o sol">
+                    <figcaption>Campo de trigo</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Rice_fields.jpg" alt="Plantação de arroz em terraços verdes">
+                    <figcaption>Plantação de arroz</figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Agricultura Sustentável. Todos os direitos reservados.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
