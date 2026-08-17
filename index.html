@@ -21,11 +21,10 @@
         <!-- HERO -->
         <section class="hero">
 
-            <img
-                src="eco-city.jpg"
-                alt="Cidade futurista sustentável iluminada por energia limpa"
+            <div
                 class="hero-image"
-            >
+                style="background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><defs><linearGradient id=%22grad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 style=%22stop-color:%2300ff88%22/><stop offset=%22100%25%22 style=%22stop-color:%2300cc66%22/></linearGradient></defs><rect width=%221200%22 height=%22800%22 fill=%22url(%23grad)%22/><circle cx=%22300%22 cy=%22200%22 r=%22150%22 fill=%22%2300ff88%22 opacity=%220.3%22/><circle cx=%22900%22 cy=%22600%22 r=%22200%22 fill=%2200cc66%22 opacity=%220.2%22/></svg>') center/cover no-repeat; background-color: #1a4d3e;"
+            ></div>
 
             <div class="hero-overlay"></div>
 
@@ -104,11 +103,10 @@
 
             <div class="concept-content">
 
-                <img
-                    src="holo-leaf.jpg"
-                    alt="Folha holográfica com circuitos representando tecnologia verde"
+                <div
                     class="leaf-image"
-                >
+                    style="background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><defs><linearGradient id=%22leaf%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 style=%22stop-color:%2342ffe0%22/><stop offset=%2250%25%22 style=%22stop-color:%2300ff88%22/><stop offset=%22100%25%22 style=%22stop-color:%2379ff72%22/></linearGradient></defs><rect width=%22400%22 height=%22400%22 fill=%22%23071417%22/><ellipse cx=%22200%22 cy=%22150%22 rx=%22120%22 ry=%22150%22 fill=%22url(%23leaf)%22 opacity=%220.8%22/><circle cx=%22200%22 cy=%22200%22 r=%2280%22 fill=%22%2342ffe0%22 opacity=%220.5%22/><line x1=%22200%22 y1=%2250%22 x2=%22200%22 y2=%22350%22 stroke=%22%2342ffe0%22 stroke-width=%223%22 opacity=%220.6%22/></svg>') center/cover no-repeat; background-color: #0c2024;"
+                ></div>
 
                 <div class="topics">
 
@@ -221,40 +219,44 @@
 
                 <h3>Calculadora de CO₂</h3>
 
-                <label for="carro">
-                    Quilômetros de carro por mês
-                </label>
+                <div class="form-group">
+                    <label for="carro">
+                        Quilômetros de carro por mês
+                    </label>
 
-                <input
-                    type="number"
-                    id="carro"
-                    placeholder="Ex: 500"
-                    min="0"
-                >
+                    <input
+                        type="number"
+                        id="carro"
+                        placeholder="Ex: 500"
+                        min="0"
+                    >
+                </div>
 
+                <div class="form-group">
+                    <label for="energia">
+                        Consumo de energia elétrica mensal (kWh)
+                    </label>
 
-                <label for="energia">
-                    Consumo de energia elétrica mensal (kWh)
-                </label>
+                    <input
+                        type="number"
+                        id="energia"
+                        placeholder="Ex: 150"
+                        min="0"
+                    >
+                </div>
 
-                <input
-                    type="number"
-                    id="energia"
-                    placeholder="Ex: 150"
-                    min="0"
-                >
+                <div class="form-group">
+                    <label for="voos">
+                        Número de voos por ano
+                    </label>
 
-
-                <label for="voos">
-                    Número de voos por ano
-                </label>
-
-                <input
-                    type="number"
-                    id="voos"
-                    placeholder="Ex: 2"
-                    min="0"
-                >
+                    <input
+                        type="number"
+                        id="voos"
+                        placeholder="Ex: 2"
+                        min="0"
+                    >
+                </div>
 
                 <button class="neon-btn calculator-button">
                     Calcular minha emissão
@@ -284,35 +286,9 @@
 
             <div class="panel quiz">
 
-                <h3>Pergunta 1</h3>
-
-                <p>
-                    Qual dessas fontes de energia é considerada renovável?
-                </p>
-
-                <label>
-                    <input type="radio" name="pergunta1">
-                    Carvão mineral
-                </label>
-
-                <label>
-                    <input type="radio" name="pergunta1">
-                    Petróleo
-                </label>
-
-                <label>
-                    <input type="radio" name="pergunta1">
-                    Energia solar
-                </label>
-
-                <label>
-                    <input type="radio" name="pergunta1">
-                    Gás natural
-                </label>
-
-                <button class="neon-btn quiz-button">
-                    Responder
-                </button>
+                <div class="quiz-loader">
+                    <p>Carregando quiz...</p>
+                </div>
 
             </div>
 
@@ -322,12 +298,15 @@
         <!-- RODAPÉ -->
         <footer>
 
-            EcoFuturo — dados aproximados com fins educativos.
-            Pequenas mudanças, grande impacto.
+            <div class="footer-content">
+                <p>EcoFuturo — dados aproximados com fins educativos.</p>
+                <p>Pequenas mudanças, grande impacto. 🌍</p>
+            </div>
 
         </footer>
 
     </main>
 
+    <script src="script.js"></script>
 </body>
 </html>
