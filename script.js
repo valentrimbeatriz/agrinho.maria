@@ -48,6 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    // Permitir Enter para calcular
+    [carro, energia, voos].forEach(input => {
+        input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                calculatorButton.click();
+            }
+        });
+    });
+
 
     // ==============================
     // QUIZ SUSTENTÁVEL
@@ -130,8 +139,27 @@ document.addEventListener("DOMContentLoaded", () => {
         quiz.appendChild(titulo);
 
 
-        const texto = document.createElement("p");
+        // Barra de progresso
+        const progressBar = document.createElement("div");
+        progressBar.style.width = "100%";
+        progressBar.style.height = "6px";
+        progressBar.style.backgroundColor = "rgba(66, 255, 224, 0.15)";
+        progressBar.style.borderRadius = "3px";
+        progressBar.style.marginBottom = "25px";
+        progressBar.style.overflow = "hidden";
 
+        const progressFill = document.createElement("div");
+        progressFill.style.width = ((perguntaAtual + 1) / perguntas.length * 100) + "%";
+        progressFill.style.height = "100%";
+        progressFill.style.background = "linear-gradient(135deg, #42ffe0, #79ff72)";
+        progressFill.style.transition = "width 0.3s ease";
+
+        progressBar.appendChild(progressFill);
+        quiz.appendChild(progressBar);
+
+
+        const texto = document.createElement("p");
+        texto.style.marginBottom = "25px";
         texto.textContent = pergunta.pergunta;
 
         quiz.appendChild(texto);
@@ -204,31 +232,42 @@ document.addEventListener("DOMContentLoaded", () => {
     function mostrarResultadoQuiz() {
 
         let mensagem;
+        let emoji;
 
         if (pontuacao === 5) {
-            mensagem = "Excelente! Você domina sustentabilidade! 🌱";
+            mensagem = "Excelente! Você domina sustentabilidade!";
+            emoji = "🌱";
         } else if (pontuacao >= 3) {
             mensagem = "Muito bem! Você já conhece bastante sobre sustentabilidade.";
+            emoji = "👏";
+        } else if (pontuacao >= 1) {
+            mensagem = "Bom começo! Continue aprendendo sobre sustentabilidade.";
+            emoji = "🌍";
         } else {
             mensagem = "Você pode aprender ainda mais sobre sustentabilidade!";
+            emoji = "📚";
         }
 
         quiz.innerHTML = `
-            <h3>Quiz finalizado!</h3>
+            <div style="text-align: center;">
+                <h3>Quiz finalizado!</h3>
 
-            <p class="quiz-score">
-                Você acertou
-                <strong>${pontuacao}</strong>
-                de
-                <strong>${perguntas.length}</strong>
-                perguntas.
-            </p>
+                <div class="quiz-score">
+                    Você acertou
+                    <strong>${pontuacao}</strong>
+                    de
+                    <strong>${perguntas.length}</strong>
+                    perguntas.
+                </div>
 
-            <p>${mensagem}</p>
+                <p style="font-size: 18px; margin: 20px 0; color: #91abad;">
+                    ${mensagem} ${emoji}
+                </p>
 
-            <button class="neon-btn quiz-button" id="restartQuiz">
-                Refazer quiz
-            </button>
+                <button class="neon-btn quiz-button" id="restartQuiz">
+                    Refazer quiz
+                </button>
+            </div>
         `;
 
         document
